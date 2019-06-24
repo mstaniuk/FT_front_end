@@ -1,10 +1,10 @@
-import Home from "../views/Home.vue";
+import List from "../views/List.vue";
 
 export default [
   {
     path: "/",
-    name: "home",
-    component: Home
+    name: "list",
+    component: List
   },
   {
     path: "/about",

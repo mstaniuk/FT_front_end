@@ -1,0 +1,15 @@
+@import "../lib/colors";
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100%;
+  background-color: $color-teal;
+}
