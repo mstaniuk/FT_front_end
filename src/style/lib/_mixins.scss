@@ -1,0 +1,50 @@
+@import 'sizes';
+
+//  -----------------------------
+//  Typography
+//  -----------------------------
+
+/**
+  Include file from global path by name given in $fontFileName
+  Can be used in font-family as $fontName
+
+  .woff and .woff2 cover all modern browsers
+
+  @mixin
+ */
+@mixin fontface($fontName, $fontFileName, $fontWeight: normal, $fontStyle: normal) {
+  @font-face {
+    font-family: $fontName;
+    src: url('../fonts/#{$fontFileName}.woff2') format('woff2'),
+    url('../fonts/#{$fontFileName}.woff') format('woff');
+    font-weight: $fontWeight;
+    font-style: $fontStyle;
+  }
+}
+
+@mixin font-open-sans() {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+//  -----------------------------
+//  Responsiveness
+//  -----------------------------
+
+/**
+  Responsive breakpoints manager
+  sets $breakpoint if exists in global $breakpoints list
+ */
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
