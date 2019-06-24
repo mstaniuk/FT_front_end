@@ -10,19 +10,23 @@
         </main>
       </section>
     </Pane>
-    <footer></footer>
+    <footer>
+      <Pagination :pagesCount="4" :currentPage="2" url="/list" />
+    </footer>
   </MainTemplate>
 </template>
 
 <script>
 import MainTemplate from "@/router/layout/main.vue";
 import Pane from "@/components/Pane";
+import Pagination from "@/components/Pagination";
 
 export default {
   name: "Home",
   components: {
     MainTemplate,
-    Pane
+    Pane,
+    Pagination
   }
 };
 </script>

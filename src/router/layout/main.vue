@@ -36,7 +36,7 @@ export default {
 
   &__title {
     margin: 0;
-    font-size: 24px;
+    font-size: 38px;
   }
 }
 </style>
