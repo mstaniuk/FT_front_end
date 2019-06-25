@@ -30,7 +30,7 @@
             </div>
             <div :class="$style['user-edit__actions']">
               <Button radius="small" @click="onSave">
-                Update Details
+                {{ acceptText }}
               </Button>
             </div>
           </div>
@@ -86,6 +86,7 @@ export default {
   data() {
     return {
       title: "",
+      acceptText: "",
       firstName: "",
       lastName: "",
       avatar: ""
@@ -135,6 +136,7 @@ export default {
       this.lastName = userData.last_name;
       this.avatar = userData.avatar;
       this.title = userData.first_name + " " + userData.last_name;
+      this.acceptText = "Update details";
     }
   },
   computed: {
@@ -154,6 +156,7 @@ export default {
       this.fetchUserData();
     } else {
       this.title = "Add User";
+      this.acceptText = "Add User";
     }
   }
 };

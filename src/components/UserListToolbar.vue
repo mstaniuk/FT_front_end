@@ -36,7 +36,9 @@ export default {
     ...mapMutations({
       setFilter: SET_USER_FILTER
     }),
-    addUser() {},
+    addUser() {
+      this.$router.push({ name: "user", params: { id: "new" } });
+    },
     debounceSearch: debounce(function(e) {
       this.setFilter({ filter: e.target.value });
     }, 200)
