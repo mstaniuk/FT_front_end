@@ -39,7 +39,11 @@
         <Button type="none" :class="$style['user__action']">
           <SvgIcon name="edit" fill="gray-dark" :size="[20, 20]" />
         </Button>
-        <Button type="none" :class="$style['user__action']">
+        <Button
+          type="none"
+          :class="$style['user__action']"
+          @click="onDeleteClick(user.id)"
+        >
           <SvgIcon name="delete" fill="gray-dark" :size="[20, 20]" />
         </Button>
       </td>
@@ -48,8 +52,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
+import { SET_USER_REMOVE_ID } from "@/store/user/mutations";
 import { GET_USER_FULL_NAME, GET_FILTERED_USERS } from "@/store/user/getters";
 
 import SvgIcon from "./SvgIcon";
@@ -66,6 +71,14 @@ export default {
       getFullNameById: GET_USER_FULL_NAME,
       users: GET_FILTERED_USERS
     })
+  },
+  methods: {
+    ...mapMutations({
+      setRemoveId: SET_USER_REMOVE_ID
+    }),
+    onDeleteClick(id) {
+      this.setRemoveId({ id });
+    }
   }
 };
 </script>
