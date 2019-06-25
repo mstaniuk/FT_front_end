@@ -36,26 +36,35 @@
         {{ getFullNameById(user.id) }}
       </td>
       <td :class="$style['user-table__cell']">
-        i i
+        <Button type="none" :class="$style['user__action']">
+          <SvgIcon name="edit" fill="gray-dark" :size="[20, 20]" />
+        </Button>
+        <Button type="none" :class="$style['user__action']">
+          <SvgIcon name="delete" fill="gray-dark" :size="[20, 20]" />
+        </Button>
       </td>
     </tr>
   </table>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
-import { USER_LIST } from "@/store/user/state";
-import { GET_USER_FULL_NAME } from "@/store/user/getters";
+import { GET_USER_FULL_NAME, GET_FILTERED_USERS } from "@/store/user/getters";
+
+import SvgIcon from "./SvgIcon";
+import Button from "./Button";
 
 export default {
   name: "UserListTable",
+  components: {
+    SvgIcon,
+    Button
+  },
   computed: {
-    ...mapState({
-      users: USER_LIST
-    }),
     ...mapGetters({
-      getFullNameById: GET_USER_FULL_NAME
+      getFullNameById: GET_USER_FULL_NAME,
+      users: GET_FILTERED_USERS
     })
   }
 };
@@ -137,6 +146,13 @@ export default {
     width: 45px;
     height: 45px;
     border-radius: 100%;
+  }
+
+  &__action {
+    padding: 5px;
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
   }
 }
 </style>

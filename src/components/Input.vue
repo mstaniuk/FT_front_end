@@ -14,10 +14,11 @@
       :class="$style['input__field']"
       type="text"
       :placeholder="placeholder"
+      v-on="$listeners"
     />
 
     <div :class="$style['input__icon']" v-if="icon">
-      <SvgIcon :name="icon" :size="[20, 20]" fill="gray-dark" />
+      <SvgIcon :name="icon" :size="[22, 22]" fill="gray-dark" />
     </div>
   </label>
 </template>

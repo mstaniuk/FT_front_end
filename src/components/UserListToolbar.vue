@@ -1,18 +1,26 @@
 <template>
   <div :class="$style['toolbar']">
     <div :class="$style['toolbar__filter']">
-      <Input placeholder="Search for users..." icon="search" />
+      <Input
+        placeholder="Search for users..."
+        icon="search"
+        @keydown="debounceSearch"
+      />
     </div>
     <div :class="$style['toolbar__actions']">
       <Button @click="addUser()">
         <SvgIcon name="plus" :class="$style['toolbar__button-icon']" />
-        add
+        Add User
       </Button>
     </div>
   </div>
 </template>
 
 <script>
+import debounce from "lodash-es/debounce";
+import { mapMutations } from "vuex";
+import { SET_USER_FILTER } from "@/store/user/mutations";
+
 import Button from "./Button";
 import SvgIcon from "./SvgIcon";
 import Input from "./Input";
@@ -25,7 +33,13 @@ export default {
     Input
   },
   methods: {
-    addUser() {}
+    ...mapMutations({
+      setFilter: SET_USER_FILTER
+    }),
+    addUser() {},
+    debounceSearch: debounce(function(e) {
+      this.setFilter({ filter: e.target.value });
+    }, 200)
   }
 };
 </script>
