@@ -26,5 +26,6 @@ export default {
     state[API_URL] + state[API_ENDPOINT_SINGLE] + "/" + id,
   [GET_API_CREATE_URL]: state => state[API_URL] + state[API_ENDPOINT_CREATE],
   [GET_API_DELETE_URL]: state => state[API_URL] + state[API_ENDPOINT_DELETE],
-  [GET_API_UPDATE_URL]: state => state[API_URL] + state[API_ENDPOINT_UPDATE]
+  [GET_API_UPDATE_URL]: state => id =>
+    state[API_URL] + state[API_ENDPOINT_UPDATE] + "/" + id
 };

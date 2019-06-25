@@ -1,5 +1,5 @@
 <template>
-  <MainTemplate title="User list">
+  <MainTemplate :title="title">
     <div :class="$style['user-page']">
       <div
         :class="[$style['user-page__pane'], $style['user-page__pane--main']]"
@@ -29,7 +29,7 @@
               </div>
             </div>
             <div :class="$style['user-edit__actions']">
-              <Button radius="small">
+              <Button radius="small" @click="onSave">
                 Update Details
               </Button>
             </div>
@@ -67,18 +67,25 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import MainTemplate from "@/router/layout/main.vue";
 import Pane from "@/components/Pane";
 import Button from "@/components/Button";
 import ButtonToInput from "@/components/ButtonToInput";
 import SvgIcon from "@/components/SvgIcon";
 
-import { FETCH_USER_DATA } from "@/store/api/actions";
+import {
+  FETCH_USER_DATA,
+  UPDATE_USER_DATA,
+  CREATE_USER_DATA
+} from "@/store/api/actions";
 
 export default {
   name: "User",
   data() {
     return {
+      title: "",
       firstName: "",
       lastName: "",
       avatar: ""
@@ -97,7 +104,26 @@ export default {
     }
   },
   methods: {
-    onSave() {},
+    ...mapActions({
+      updateUserData: UPDATE_USER_DATA,
+      createUserData: CREATE_USER_DATA
+    }),
+    async onSave() {
+      if (this.isNew) {
+        this.createUserData({
+          firstName: this.firstName,
+          lastName: this.lastName,
+          avatar: this.avatar
+        });
+      } else {
+        this.updateUserData({
+          id: this.userId,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          avatar: this.avatar
+        });
+      }
+    },
     avatarKeydown(value) {
       this.avatar = value;
     },
@@ -108,15 +134,27 @@ export default {
       this.firstName = userData.first_name;
       this.lastName = userData.last_name;
       this.avatar = userData.avatar;
+      this.title = userData.first_name + " " + userData.last_name;
     }
   },
   computed: {
+    isNew() {
+      return this.$route.params.id === "new";
+    },
     userId() {
+      if (this.isNew) {
+        return null;
+      }
+
       return parseInt(this.$route.params.id);
     }
   },
   created() {
-    this.fetchUserData();
+    if (!this.isNew) {
+      this.fetchUserData();
+    } else {
+      this.title = "Add User";
+    }
   }
 };
 </script>
