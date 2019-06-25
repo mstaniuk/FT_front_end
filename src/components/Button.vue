@@ -57,5 +57,9 @@ export default {
   &--pill {
     border-radius: 100px;
   }
+
+  &--small {
+    border-radius: 5px;
+  }
 }
 </style>

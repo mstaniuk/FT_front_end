@@ -22,7 +22,8 @@ export default {
     state[API_ENTRIES_PER_PAGE] +
     "&page=" +
     page,
-  [GET_API_SINGLE_URL]: state => state[API_URL] + state[API_ENDPOINT_SINGLE],
+  [GET_API_SINGLE_URL]: state => id =>
+    state[API_URL] + state[API_ENDPOINT_SINGLE] + "/" + id,
   [GET_API_CREATE_URL]: state => state[API_URL] + state[API_ENDPOINT_CREATE],
   [GET_API_DELETE_URL]: state => state[API_URL] + state[API_ENDPOINT_DELETE],
   [GET_API_UPDATE_URL]: state => state[API_URL] + state[API_ENDPOINT_UPDATE]

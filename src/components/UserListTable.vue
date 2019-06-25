@@ -36,7 +36,11 @@
         {{ getFullNameById(user.id) }}
       </td>
       <td :class="$style['user-table__cell']">
-        <Button type="none" :class="$style['user__action']">
+        <Button
+          type="none"
+          :class="$style['user__action']"
+          @click="onEditClick(user.id)"
+        >
           <SvgIcon name="edit" fill="gray-dark" :size="[20, 20]" />
         </Button>
         <Button
@@ -78,6 +82,9 @@ export default {
     }),
     onDeleteClick(id) {
       this.setRemoveId({ id });
+    },
+    onEditClick(id) {
+      this.$router.push({ name: "user", params: { id: id } });
     }
   }
 };

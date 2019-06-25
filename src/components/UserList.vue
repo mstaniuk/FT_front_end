@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 import { SET_USER_REMOVE_ID, REMOVE_USER_BY_ID } from "@/store/user/mutations";
 import { USER_REMOVE_ID } from "@/store/user/state";
@@ -46,9 +46,11 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({
-      setRemoveId: SET_USER_REMOVE_ID,
+    ...mapActions({
       removeUserById: REMOVE_USER_BY_ID
+    }),
+    ...mapMutations({
+      setRemoveId: SET_USER_REMOVE_ID
     }),
     onCancel() {
       this.setRemoveId({ id: null });

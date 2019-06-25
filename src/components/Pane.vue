@@ -15,6 +15,7 @@ export default {
 @import "../style/lib/colors";
 
 .pane {
+  height: 100%;
   background-color: $color-gray-light;
   border-radius: 5px;
   box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.15);
