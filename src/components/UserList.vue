@@ -1,14 +1,9 @@
 <template>
   <section :class="$style['user-list']">
     <header :class="$style['user-list__header']">
-      <div>
-        <input type="text" />
-      </div>
-      <div>
-        <button>add</button>
-      </div>
+      <UserListToolbar />
     </header>
-    <main>
+    <main :class="$style['user-list__content']">
       <UserListTable />
     </main>
   </section>
@@ -16,11 +11,13 @@
 
 <script>
 import UserListTable from "./UserListTable";
+import UserListToolbar from "./UserListToolbar";
 
 export default {
   name: "UserList",
   components: {
-    UserListTable
+    UserListTable,
+    UserListToolbar
   }
 };
 </script>
@@ -36,7 +33,7 @@ export default {
     align-items: center;
   }
 
-  &__actions {
+  &__content {
   }
 }
 </style>
