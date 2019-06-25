@@ -1,30 +1,26 @@
 <template>
-  <section>
-    <header>
-      <input type="text" />
-      <button>add</button>
+  <section :class="$style['user-list']">
+    <header :class="$style['user-list__header']">
+      <div>
+        <input type="text" />
+      </div>
+      <div>
+        <button>add</button>
+      </div>
     </header>
     <main>
-      list <span v-if="inProgress">Loading ...</span>
-      <div v-for="user in userList" :key="user.id">
-        {{ getFullName(user.id) }}
-      </div>
+      <UserListTable />
     </main>
   </section>
 </template>
 
 <script>
+import UserListTable from "./UserListTable";
+
 export default {
   name: "UserList",
-  props: {
-    inProgress: {
-      type: Boolean,
-      default: false
-    },
-    userList: {
-      type: Array,
-      default: () => []
-    }
+  components: {
+    UserListTable
   }
 };
 </script>
@@ -33,10 +29,14 @@ export default {
 @import "../style/lib/mixins";
 @import "../style/lib/colors";
 
-.pane {
-  background-color: $color-gray-light;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.15);
-  padding: 40px 20px;
+.user-list {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__actions {
+  }
 }
 </style>

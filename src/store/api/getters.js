@@ -15,11 +15,13 @@ export const GET_API_DELETE_URL = "GET_API_DELETE_URL";
 export const GET_API_UPDATE_URL = "GET_API_UPDATE_URL";
 
 export default {
-  [GET_API_LIST_URL]: state =>
+  [GET_API_LIST_URL]: state => page =>
     state[API_URL] +
     state[API_ENDPOINT_LIST] +
     "?per_page=" +
-    state[API_ENTRIES_PER_PAGE],
+    state[API_ENTRIES_PER_PAGE] +
+    "&page=" +
+    page,
   [GET_API_SINGLE_URL]: state => state[API_URL] + state[API_ENDPOINT_SINGLE],
   [GET_API_CREATE_URL]: state => state[API_URL] + state[API_ENDPOINT_CREATE],
   [GET_API_DELETE_URL]: state => state[API_URL] + state[API_ENDPOINT_DELETE],
