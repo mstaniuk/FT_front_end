@@ -20,7 +20,6 @@
 <script>
 export default {
   name: "Pagination",
-
   computed: {
     items: function() {
       const linkElement = "router-link";
@@ -109,10 +108,6 @@ export default {
     },
     currentPage: {
       type: Number,
-      required: true
-    },
-    url: {
-      type: String,
       required: true
     }
   }
