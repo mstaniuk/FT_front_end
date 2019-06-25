@@ -1,5 +1,8 @@
 # FT_front_end
 
+## Development documentation
+Development documentation and implementation details in /docs/documentation.pdf
+
 ## Project setup
 ```
 npm install
