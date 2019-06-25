@@ -28,9 +28,6 @@ export default {
 
 .user-list {
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   &__content {

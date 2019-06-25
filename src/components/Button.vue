@@ -32,7 +32,9 @@ export default {
 @import "../style/lib/colors";
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   background: transparent;
   border-radius: 0;

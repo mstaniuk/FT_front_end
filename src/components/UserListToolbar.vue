@@ -1,18 +1,11 @@
 <template>
-  <div :style="$style['toolbar']">
-    <div>
-      <input type="text" />
+  <div :class="$style['toolbar']">
+    <div :class="$style['toolbar__filter']">
+      <Input placeholder="Search for users..." icon="search" />
     </div>
-    <div>
-      <Button
-        @click="
-          () => {
-            log();
-          }
-        "
-        :class="'test'"
-        test="2"
-      >
+    <div :class="$style['toolbar__actions']">
+      <Button @click="addUser()">
+        <SvgIcon name="plus" :class="$style['toolbar__button-icon']" />
         add
       </Button>
     </div>
@@ -21,16 +14,18 @@
 
 <script>
 import Button from "./Button";
+import SvgIcon from "./SvgIcon";
+import Input from "./Input";
 
 export default {
   name: "UserListToolbar",
-  methods: {
-    log() {
-      console.log("asd");
-    }
-  },
   components: {
-    Button
+    Button,
+    SvgIcon,
+    Input
+  },
+  methods: {
+    addUser() {}
   }
 };
 </script>
@@ -43,5 +38,16 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &__filter {
+    width: 500px;
+  }
+
+  &__actions {
+  }
+
+  &__button-icon {
+    margin-right: 12px;
+  }
 }
 </style>
