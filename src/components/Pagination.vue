@@ -1,5 +1,5 @@
 <template>
-  <nav :class="$style['pagination']">
+  <nav :class="$style['pagination']" v-if="pagesCount > 1">
     <ul :class="$style['pagination__list']">
       <li
         v-for="item in items"
@@ -10,7 +10,7 @@
           :is="item.tag"
           v-html="item.content"
           :class="$style['pagination__element']"
-          :href="item.attributes.href"
+          :to="item.attributes.to"
         />
       </li>
     </ul>
@@ -20,16 +20,25 @@
 <script>
 export default {
   name: "Pagination",
+
   computed: {
     items: function() {
+      const linkElement = "router-link";
+      const textElement = "span";
+
       let items = [];
+
       const prevItem = {
-        tag: this.currentPage > 1 ? "a" : "span",
+        tag: this.currentPage > 1 ? linkElement : textElement,
+
         content: "&laquo;",
         attributes: {
-          href:
+          to:
             this.currentPage > 1
-              ? this.url + "/" + (this.currentPage - 1)
+              ? {
+                  name: "list",
+                  params: { page: this.currentPage - 1 }
+                }
               : null,
           class: [
             this.$style["pagination__item"],
@@ -41,12 +50,15 @@ export default {
       };
 
       const nextItem = {
-        tag: this.currentPage < this.pagesCount ? "a" : "span",
+        tag: this.currentPage < this.pagesCount ? linkElement : textElement,
         content: "&raquo;",
         attributes: {
-          href:
+          to:
             this.currentPage < this.pagesCount
-              ? this.url + "/" + (this.currentPage + 1)
+              ? {
+                  name: "list",
+                  params: { page: this.currentPage + 1 }
+                }
               : null,
           class: [
             this.$style["pagination__item"],
@@ -62,10 +74,16 @@ export default {
 
       for (let i = 1; i <= this.pagesCount; i++) {
         const item = {
-          tag: i !== this.currentPage ? "a" : "span",
+          tag: i !== this.currentPage ? linkElement : textElement,
           content: i,
           attributes: {
-            href: i !== this.currentPage ? this.url + "/" + i : null,
+            to:
+              i !== this.currentPage
+                ? {
+                    name: "list",
+                    params: { page: i }
+                  }
+                : null,
             class: [
               this.$style["pagination__item"],
               {

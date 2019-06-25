@@ -1,0 +1,19 @@
+import {
+  API_LIST_REQUEST_IN_PROGRESS,
+  API_LIST_REQUEST_ERROR,
+  API_LIST_REQUEST_ERROR_MESSAGE
+} from "./state";
+
+export const SET_API_LIST_REQUEST_IN_PROGRESS =
+  "SET_API_LIST_REQUEST_IN_PROGRESS";
+export const SET_API_LIST_REQUEST_ERROR = "SET_API_LIST_REQUEST_ERROR";
+export const SET_API_LIST_REQUEST_ERROR_MESSAGE =
+  "SET_API_LIST_REQUEST_ERROR_MESSAGE";
+export default {
+  [SET_API_LIST_REQUEST_IN_PROGRESS]: (state, { status }) =>
+    (state[API_LIST_REQUEST_IN_PROGRESS] = status),
+  [SET_API_LIST_REQUEST_ERROR]: (state, { status }) =>
+    (state[API_LIST_REQUEST_ERROR] = status),
+  [SET_API_LIST_REQUEST_ERROR_MESSAGE]: (state, { message }) =>
+    (state[API_LIST_REQUEST_ERROR_MESSAGE] = message)
+};

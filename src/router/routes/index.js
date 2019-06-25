@@ -2,7 +2,8 @@ import List from "../views/List.vue";
 
 export default [
   {
-    path: "/",
+    path: "/list/:page?",
+    alias: "/:page?",
     name: "list",
     component: List
   },
